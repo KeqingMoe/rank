@@ -47,12 +47,14 @@ const headers = computed(() => {
 });
 
 const genScore = submission => {
+    if(submission.tries==0)return '';
     const accepted = submission.status == 'Accepted';
     const tries = submission.tries;
     return `${accepted ? '+' : '-'}${accepted ? (tries == 1 ? '' : tries) : submission.tries}`;
 }
 
 const genStyle = submission => {
+    if(submission.tries==0)return {};
     return {
         // color: submission.status == 'Accepted' ? '#CBFFA9' : '#FF9B9B',
         'background-color': submission.status == 'Accepted' ? '#6BCB77B0' : '#FF6B6BB0',

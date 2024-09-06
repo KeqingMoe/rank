@@ -101,9 +101,9 @@ const jsonResponse:Res = {
                 },
                 {
                     problemId: 2,
-                    tries: 2,
+                    tries: 0,
                     time: 3,
-                    status: 'Accepted',
+                    status: 'Rejected',
                 },
                 {
                     problemId: 2,
