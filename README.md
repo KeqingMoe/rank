@@ -31,6 +31,11 @@ npm run dev
 npm run build
 ```
 
+构建时报这个错可以无视：
+```
+Could not find a declaration file for module './App.vue'
+```
+
 运行：
 ```shell
 npm run build

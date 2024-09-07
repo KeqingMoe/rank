@@ -13,7 +13,7 @@ const poll = () => {
             throw new Error('Network response was not ok.');
         })
         .then(data => {
-            res.value = data;
+            res.value = data.data;
         })
         .catch(error => {
         });
@@ -47,14 +47,14 @@ const headers = computed(() => {
 });
 
 const genScore = submission => {
-    if(submission.tries==0)return '';
+    if (submission.tries == 0) return '';
     const accepted = submission.status == 'Accepted';
     const tries = submission.tries;
-    return `${accepted ? '+' : '-'}${accepted ? (tries == 1 ? '' : tries) : submission.tries}`;
+    return `${accepted ? '+' : '-'}${accepted ? (tries == 1 ? '' : tries-1) : submission.tries}`;
 }
 
 const genStyle = submission => {
-    if(submission.tries==0)return {};
+    if (submission.tries == 0) return {};
     return {
         // color: submission.status == 'Accepted' ? '#CBFFA9' : '#FF9B9B',
         'background-color': submission.status == 'Accepted' ? '#6BCB77B0' : '#FF6B6BB0',
@@ -84,7 +84,6 @@ const pageIndex = ref(0);
 const nextPage = () => {
     const table = document.getElementById('pageTbody');
     ++pageIndex.value;
-    console.log(table.childElementCount);
     if (table.childElementCount < config.eachPage) {
         pageIndex.value = 0;
     }
@@ -112,7 +111,7 @@ setInterval(nextPage, config.nextPageInterval);
                 <td>{{ record.participantDepartment }} - {{ record.participantName }}</td>
                 <td>{{ record.solved }}</td>
                 <td>{{ record.penalty }}</td>
-                <td class="score" :style="genStyle(record.submissions[problem])" v-for="problem in problems">
+                <td :style="genStyle(record.submissions[problem])" v-for="problem in problems">
                     {{ genScore(record.submissions[problem]) }}</td>
             </tr>
         </tbody>

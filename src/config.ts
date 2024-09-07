@@ -1,6 +1,6 @@
 export default {
-    api_url: 'http://localhost:1145/',
+    api_url: '',
     pollInterval: 1000,
     eachPage:10,
-    nextPageInterval: 10000,
+    nextPageInterval: 1000,
 };
